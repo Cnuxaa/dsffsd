@@ -1,0 +1,55 @@
+{
+  "log": {
+    "level": "info"
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "google",
+        "address": "8.8.8.8"
+      }
+    ]
+  },
+  "inbounds": [
+    {
+      "type": "socks",
+      "tag": "socks-in",
+      "listen": "127.0.0.1",
+      "listen_port": 1080
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "shadowsocks",
+      "tag": "Server-1",
+      "server": "2.59.156.24",
+      "server_port": 8388,
+      "method": "chacha20-ietf-poly1305",
+      "password": "TxHV38csOasz",
+      "udp_over_tcp": false
+    },
+    {
+      "type": "shadowsocks",
+      "tag": "Contabo-VPS",
+      "server": "2.59.156.24",
+      "server_port": 3074,
+      "method": "chacha20-ietf-poly1305",
+      "password": "8TFm5sr@Q5jpikhg",
+      "udp_over_tcp": false
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "rules": [
+      {
+        "protocol": "dns",
+        "outbound": "direct"
+      }
+    ],
+    "final": "Server-1"
+  }
+}
